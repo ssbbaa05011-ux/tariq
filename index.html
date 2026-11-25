@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="طارق شفيع - القاسي - سيرة ذاتية احترافية" />
+  <meta name="author" content="طارق شفيع" />
+  <title>طارق شفيع - القاسي</title>
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Arabic + Latin fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Root variables (Black + Gold) ---------- */
+    :root {
+      --gold: #d4af37;
+      --gold-2: #e5c04a;
+      --bg: #080808;
+      --bg-2: #060606;
+      --card: rgba(22, 22, 30, 0.55);
+      --card-border: rgba(212, 175, 55, 0.18);
+      --text: #f5f5f5;
+      --muted: #9b9b9b;
+      --green: #2ecc71;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", "Amiri", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Utilities ---------- */
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+    }
+    .section { padding: 90px 18px; max-width: 1200px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-header { text-align: center; margin-bottom: 55px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .progress-bar > span { transition-duration: 0.01ms; }
+      @keyframes float1, float2, float3 { from, to { transform: none; } }
+    }
+
+    /* ---------- Animated background ---------- */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 360px; height: 360px; background: var(--gold); top: 6%; left: -90px; animation: float1 22s infinite ease-in-out; }
+    .blob-2 { width: 320px; height: 320px; background: #2c5364; right: -70px; bottom: 12%; animation: float2 28s infinite ease-in-out; }
+    .blob-3 { width: 210px; height: 210px; background: var(--gold-2); right: 20%; top: 55%; animation: float3 18s infinite ease-in-out; }
+    @keyframes float1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(55px, 40px); } }
+    @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-45px, 60px); } }
+    @keyframes float3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(30px, -35px); } }
+
+    /* ---------- Hero ---------- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .hero-content { display: flex; flex-direction: column; align-items: center; gap: 14px; z-index: 1; text-align: center; }
+    .avatar {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 5px solid var(--gold);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 45px rgba(212, 175, 55, 0.35);
+      animation: avatarPulse 3s ease infinite;
+    }
+    @keyframes avatarPulse { 50% { box-shadow: 0 0 65px rgba(212,175,55,0.6); } }
+    .name {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.5rem, 7vw, 4.8rem);
+      font-weight: 900;
+      margin: 0;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 0%, var(--gold) 55%, var(--gold-2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .title {
+      font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      margin: 0;
+    }
+    .scroll-btn {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      color: var(--gold);
+      font-size: 1.3rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+      z-index: 2;
+      animation: bounce 2.4s infinite;
+    }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
+    .scroll-btn:hover {
+      transform: translateX(-50%) translateY(-8px);
+      background: rgba(212, 175, 55, 0.14);
+      box-shadow: 0 0 34px rgba(212, 175, 55, 0.5);
+    }
+    .scroll-btn:active { transform: translateX(-50%); }
+
+    /* ---------- About ---------- */
+    #about { background: var(--bg-2); }
+    .about-card {
+      text-align: center;
+      padding: 42px 28px;
+      border-radius: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+    .about-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .about-icon {
+      font-size: 2.6rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(212,175,55,0.5);
+    }
+    .bio { font-size: 1.15rem; line-height: 1.8; color: #ddd; margin: 0; max-width: 640px; margin-inline: auto; }
+
+    /* ---------- Personal info ---------- */
+    #info { background: var(--bg); }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      backdrop-filter: blur(14px);
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+    .info-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+    .info-icon { font-size: 1.6rem; color: var(--gold); margin-bottom: 6px; }
+    .info-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); font-weight: 700; }
+    .info-value { font-size: 1.2rem; font-weight: 500; color: #fff; }
+    .info-value.green { color: var(--green); }
+
+    /* ---------- Contact ---------- */
+    #contact { background: var(--bg-2); }
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      padding: 18px 26px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      font-family: "Tajawal", sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      backdrop-filter: blur(14px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: right;
+    }
+    .social-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212,175,55,0.5), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .social-btn.rippled::after { animation: rippleOut 0.8s ease-out; opacity: 1; }
+    @keyframes rippleOut { 0% { transform: scale(0); } 100% { transform: scale(20); } }
+    .social-btn:hover { transform: translateY(-6px); border-color: var(--brand); box-shadow: 0 12px 34px rgba(0,0,0,0.55); }
+    .social-btn:active { transform: scale(0.98); }
+    .social-icon {
+      width: 46px; height: 46px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      font-size: 1.2rem;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      flex-shrink: 0;
+    }
+    .social-btn:hover .social-icon { transform: scale(1.15) rotate(-4deg); box-shadow: 0 14px 32px rgba(0,0,0,0.5); }
+    .social-text { display: flex; flex-direction: column; }
+    .social-name { font-weight: 700; font-size: 1.05rem; }
+    .social-handle { font-size: 0.85rem; color: var(--muted); }
+    .btn-whatsapp { --brand: #25D366; }
+    .btn-tiktok { --brand: #FE2C55; }
+    .btn-snapchat { --brand: #FFFC00; color: #000; }
+    .btn-snapchat .social-name, .btn-snapchat .social-handle { color: #000; }
+    .btn-snapchat .social-icon { background: #FFFC00; color: #000; }
+    .btn-snapchat:hover .social-icon { box-shadow: 0 14px 32px rgba(0,0,0,0.4); }
+
+    /* ---------- Stats ---------- */
+    #stats { background: var(--bg); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 34px 22px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      backdrop-filter: blur(14px);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .stat-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+    .stat-icon {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-shadow: 0 0 16px rgba(212,175,55,0.5);
+    }
+    .stat-value {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.1rem, 5vw, 3.3rem);
+      font-weight: 900;
+      line-height: 1.25;
+      background: linear-gradient(135deg, #ffffff, var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      min-height: 1em;
+    }
+    .stat-label { font-size: 0.95rem; color: var(--muted); margin-top: 8px; font-weight: 500; }
+
+    /* ---------- Skills ---------- */
+    #skills { background: var(--bg-2); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 26px;
+    }
+    .skill-card {
+      padding: 26px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      backdrop-filter: blur(14px);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .skill-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+    .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .skill-name { font-weight: 600; font-size: 1.05rem; }
+    .skill-pct { font-weight: 700; color: var(--gold); }
+    .progress-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-bar > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), var(--gold-2));
+      border-radius: 6px;
+      transition: width 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .progress-bar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 40%, rgba(212,175,55,0.25), transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ---------- Quote ---------- */
+    #quote { background: var(--bg); }
+    .quote-card {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 58px 66px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-card::before {
+      content: "“";
+      position: absolute;
+      right: 30px; top: -12px;
+      font-family: "Playfair Display", serif;
+      font-size: 6rem;
+      color: var(--gold);
+      opacity: 0.14;
+      line-height: 1;
+    }
+    .quote-icon { font-size: 2rem; color: var(--gold); margin-bottom: 14px; }
+    .quote-text { font-family: "Playfair Display", serif; font-size: clamp(1.15rem, 3vw, 1.5rem); line-height: 1.7; margin: 0; }
+    .quote-author { display: block; margin-top: 18px; font-style: italic; color: var(--muted); font-size: 1.05rem; }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      padding: 34px 18px;
+      text-align: center;
+      border-top: 1px solid var(--card-border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      background: var(--bg);
+    }
+    .footer .name-gold { color: var(--gold); font-weight: 700; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 640px) {
+      .avatar { width: 120px; height: 120px; font-size: 2rem; }
+      .name { font-size: clamp(2.1rem, 11vw, 3rem); }
+      .title { letter-spacing: 0.16em; font-size: 1rem; }
+      .about-card { padding: 34px 20px; }
+      .bio { font-size: 1.05rem; }
+      .social-btn { padding: 15px 20px; font-size: 1rem; }
+      .stat-card, .skill-card { padding: 26px 18px; }
+      .quote-card { padding: 40px 24px; }
+      .scroll-btn { width: 52px; height: 52px; font-size: 1.1rem; }
+    }
+
+    /* Ripple trigger for buttons (JS adds rippled class) */
+    .ripple-btn { position: relative; overflow: hidden; }
+    .ripple-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(212,175,55,0.5) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .ripple-btn.rippled::after { animation: rippleOut 0.8s ease-out; opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================ Hero ============================ -->
+  <section id="hero" class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="hero-content">
+      <div class="avatar reveal reveal-delay-1"><span>طش</span></div>
+      <h1 class="name reveal reveal-delay-2">طارق شفيع</h1>
+      <h2 class="title reveal reveal-delay-3">القاسي</h2>
+      <button id="scrollBtn" class="scroll-btn ripple-btn" aria-label="انزل لأسفل">
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================ About ============================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-user-astronaut"></i> نبذة عني</span>
+        <h2 class="section-title">عن طارق شفيع</h2>
+      </div>
+      <div class="about-card reveal reveal-delay-1">
+        <div class="about-icon"><i class="fas fa-user-circle"></i></div>
+        <p class="bio">شخصية معروفة في الحارة، يحب التميز والهيبة، ويهتم بالظهور بشكل احترافي.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Personal Info ============================ -->
+  <section id="info" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-id-card"></i> المعلومات الشخصية</span>
+        <h2 class="section-title">بياناتي</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card reveal reveal-delay-1">
+          <div class="info-icon"><i class="fas fa-signature"></i></div>
+          <span class="info-label">الاسم</span>
+          <span class="info-value">طارق شفيع</span>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <div class="info-icon"><i class="fas fa-medal"></i></div>
+          <span class="info-label">اللقب</span>
+          <span class="info-value">القاسي</span>
+        </div>
+        <div class="info-card reveal reveal-delay-3">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <span class="info-label">مكان السكن</span>
+          <span class="info-value">المدينة المنورة (الفرن)</span>
+        </div>
+        <div class="info-card reveal reveal-delay-4">
+          <div class="info-icon"><i class="fas fa-futbol"></i></div>
+          <span class="info-label">الانتماء الرياضي</span>
+          <span class="info-value green">أهلاوي طحلبي 💚</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Contact ============================ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-phone-volume"></i> وسائل التواصل</span>
+        <h2 class="section-title">تواصل معي</h2>
+      </div>
+      <div class="contact-grid">
+        <a class="social-btn ripple-btn btn-whatsapp"
+           href="https://wa.me/966509730421"
+           target="_blank" rel="noopener noreferrer">
+          <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="social-text">
+            <span class="social-name">واتساب</span>
+            <span class="social-handle">0509730421</span>
+          </div>
+        </a>
+        <a class="social-btn ripple-btn btn-tiktok"
+           href="https://www.tiktok.com/@ti_q79"
+           target="_blank" rel="noopener noreferrer">
+          <div class="social-icon"><i class="fab fa-tiktok"></i></div>
+          <div class="social-text">
+            <span class="social-name">تيك توك</span>
+            <span class="social-handle">ti_q79</span>
+          </div>
+        </a>
+        <a class="social-btn ripple-btn btn-snapchat"
+           href="https://www.snapchat.com/add/tariq2097"
+           target="_blank" rel="noopener noreferrer">
+          <div class="social-icon"><i class="fab fa-snapchat"></i></div>
+          <div class="social-text">
+            <span class="social-name">سناب شات</span>
+            <span class="social-handle">tariq2097</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Stats ============================ -->
+  <section id="stats" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-chart-line"></i> بعض الأرقام</span>
+        <h2 class="section-title">إنجازات تصميمية</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-icon"><i class="fas fa-award"></i></div>
+          <div class="stat-value counter" data-value="8" id="stat-exp">0</div>
+          <div class="stat-label">سنوات الخبرة</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+          <div class="stat-value counter" data-value="20" id="stat-ach">0</div>
+          <div class="stat-label">إنجازات محترفة</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+          <div class="stat-value counter" data-value="100" id="stat-amb">0</div>
+          <div class="stat-label">طموح مستمر</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Skills ============================ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow"><i class="fas fa-terminal"></i> المهارات</span>
+        <h2 class="section-title">مهاراتي</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal reveal-delay-1">
+          <div class="skill-header">
+            <span class="skill-name">التواصل الاحترافي</span>
+            <span class="skill-pct" id="pct-1">0%</span>
+          </div>
+          <div class="progress-bar"><span data-width="94"></span></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-header">
+            <span class="skill-name">حل المشكلات</span>
+            <span class="skill-pct" id="pct-2">0%</span>
+          </div>
+          <div class="progress-bar"><span data-width="88"></span></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-header">
+            <span class="skill-name">إدارة الوقت</span>
+            <span class="skill-pct" id="pct-3">0%</span>
+          </div>
+          <div class="progress-bar"><span data-width="96"></span></div>
+        </div>
+        <div class="skill-card reveal reveal-delay-4">
+          <div class="skill-header">
+            <span class="skill-name">اللغة العربية</span>
+            <span class="skill-pct" id="pct-4">0%</span>
+          </div>
+          <div class="progress-bar"><span data-width="99"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Quote ============================ -->
+  <section id="quote" class="section">
+    <div class="container">
+      <div class="quote-card reveal reveal-delay-1">
+        <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+        <p class="quote-text">المثابرة على المحاولة تقربك من الذروة، والإفراط في الانتظار يجبرك على إتقان العمل.</p>
+        <span class="quote-author">- طارق شفيع</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Footer ============================ -->
+  <footer class="footer">
+    <p><span class="name-gold">طارق شفيع</span> — القاسي</p>
+    <p>جميع الحقوق محفوظة &copy; 2026</p>
+  </footer>
+
+  <!-- ============================ Script ============================ -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* 1) Fade In / Slide Up on scroll */
+      var revealEls = document.querySelectorAll(".reveal");
+      if (revealEls.length) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObserver.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+        revealEls.forEach(function (el) { revealObserver.observe(el); });
+      }
+
+      /* 2) Ripple on buttons */
+      var rippleBtns = document.querySelectorAll(".ripple-btn");
+      rippleBtns.forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          var rect = btn.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          btn.style.setProperty("--x", x + "px");
+          btn.style.setProperty("--y", y + "px");
+          btn.classList.add("rippled");
+          setTimeout(function () { btn.classList.remove("rippled"); }, 900);
+        });
+      });
+
+      /* 3) Progress bars */
+      var progressEls = document.querySelectorAll(".progress-bar > span");
+      if (progressEls.length) {
+        var progObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.style.width = e.target.dataset.width + "%";
+              e.target.parentElement.querySelector(".skill-pct").textContent = e.target.dataset.width + "%";
+              progObserver.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        progressEls.forEach(function (el) { progObserver.observe(el); });
+      }
+
+      /* 4) Animated counters */
+      var counters = document.querySelectorAll(".counter");
+      if (counters.length) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            counterObserver.unobserve(e.target);
+            var el = e.target;
+            var target = parseInt(el.dataset.value, 10);
+            var duration = 1800;
+            var start = performance.now();
+            function tick(now) {
+              var t = Math.min((now - start) / duration, 1);
+              var ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
+              el.textContent = Math.round(target * ease);
+              if (t < 1) requestAnimationFrame(tick);
+              else el.textContent = String(target) + "%";
+            }
+            requestAnimationFrame(tick);
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(function (el) { counterObserver.observe(el); });
+      }
+
+      /* 5) Smooth scroll to anchors */
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          var id = a.getAttribute("href").slice(1);
+          var el = document.getElementById(id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      /* 6) Hero scroll button */
+      var scrollBtn = document.getElementById("scrollBtn");
+      if (scrollBtn) {
+        scrollBtn.addEventListener("click", function () {
+          var about = document.getElementById("about");
+          if (about) about.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      /* 7) Respect reduced motion */
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.querySelectorAll("body *").forEach(function (el) {
+          el.style.animationDuration = "0.01ms";
+          el.style.transitionDuration = "0.01ms";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
